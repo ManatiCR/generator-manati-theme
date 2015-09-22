@@ -1,4 +1,4 @@
-# generator-manati-theme [![Build Status](https://secure.travis-ci.org/ManatiCR/generator-manati-theme.png?branch=master)](https://travis-ci.org/ManatiCR/generator-manati-theme)
+# generator-manati-theme
 
 > [Yeoman](http://yeoman.io) generator to create a base Drupal 7 Theme created by [Estudio Manatí](http://www.estudiomanati.com/)
 
