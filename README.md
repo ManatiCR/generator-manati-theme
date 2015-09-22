@@ -13,6 +13,8 @@ npm install -g generator-manati-theme
 ```
 
 ## Usage
+Go to your Drupal `sites/all/themes/` folder and run
+
 ```bash
 yo manati-theme
 ```
@@ -20,6 +22,12 @@ yo manati-theme
 You'll have to provide a theme name and a description, you can use plain text for the name and we'll do everything else.
 
 You'll get a nice Live Reload installed, served by grunt and understood by drupal to react to changes in your localhost dev enviroment.  You can opt out of this feature when you run the generator.
+
+If you don't want yeoman to run npm install for you, use the `--skipInstall` option
+
+```bash
+yo manati-theme --skipInstall
+```
 
 ## License
 
