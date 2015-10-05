@@ -23,8 +23,10 @@
 }
 
 // sprite mixin
+// The mixin requires the image as basename only, and must exist as png and svg.
+//
 // usage example:
-// @include sprite(red, $x: center, $y: -589px);
+// @include sprite(red, $x: center, $y: -589px, $image: "../images/sprite");
 @mixin sprite($color, $x, $y, $image: "../images/global-sprite") {
   background: $color url($image + ".png");
   background-image: url($image + ".svg"), none;
