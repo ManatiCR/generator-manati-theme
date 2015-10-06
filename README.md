@@ -1,6 +1,6 @@
 # generator-manati-theme
 
-> [Yeoman](http://yeoman.io) generator to create a base [Drupal](https://www.drupal.org/) 7 Theme developed by [Estudio Manatí](http://www.estudiomanati.com/)
+> [Yeoman](http://yeoman.io) generator to create a [Drupal](https://www.drupal.org/) 7 **base theme** developed by [Estudio Manatí](http://www.estudiomanati.com/)
 
 ## Note
 This is a very new generator and needs some more testing and work, so please use at your own risk, PRs welcome.
