@@ -2,6 +2,9 @@
 // Variables
 //
 
+// Sprite
+$sprite-image: "../images/global-sprite";
+
 // Typography
 
 
@@ -13,6 +16,6 @@ $max-width: 1200px;
 $grid-colums: 13;
 
 // Breakpoints
-
-// Sprite Mixin default image name
-$sprite-default: "../images/global-sprite";
+$desktop: 1000px;
+$tablet: 700px;
+$mobile-large: 500px;

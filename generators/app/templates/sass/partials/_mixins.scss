@@ -2,20 +2,6 @@
 // Mixins
 //
 
-// hidden placeholder
-@mixin hidden() {
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
-}
-
-// text-hidden placeholder
-@mixin text-hidden() {
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 // font-size mixin
 @mixin font-size($size) {
   font-size: $size + px;
@@ -23,12 +9,9 @@
 }
 
 // sprite mixin
-// The mixin requires the image as basename only, and must exist as png and svg.
-//
 // usage example:
-// @include sprite($color: red, $x: center, $y: -589px, $image: "../images/sprite");
-// @include sprite(red, center, -589px);
-@mixin sprite($color, $x, $y, $image: $sprite-default) {
+// @include sprite(red, $x: center, $y: -589px);
+@mixin sprite($color, $x, $y, $image: "$sprite-image") {
   background: $color url($image + ".png");
   background-image: url($image + ".svg"), none;
   background-position: $x $y;
