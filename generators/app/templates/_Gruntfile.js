@@ -13,7 +13,7 @@ module.exports = function (grunt) {
           sass: {
             files: ['sass/{,**/}*.scss'],
             tasks: ['sass:dev'],
-        <% if (hasLiveReload) { %>
+        <% if (features.hasLiveReload) { %>
             options: {
               livereload: true,
             }

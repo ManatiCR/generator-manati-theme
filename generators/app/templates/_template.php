@@ -4,7 +4,7 @@
  * HTML template functions.
  */
 
-<% if (hasLiveReload) { %>
+<% if (features.hasLiveReload) { %>
 /**
  * Implements hook_preprocess_page()
  *
@@ -15,8 +15,8 @@ function <%= themeSlugName %>_preprocess_page(&$variables) {
   drupal_add_js('//localhost:35729/livereload.js', array('type' => 'external', 'scope' => 'footer'));
 
 }
-<% } %>
 
+<% } %>
 /**
  * Implements hook_preprocess_html().
  * Meta tags https://drupal.org/node/1468582#comment-5698732
@@ -75,34 +75,48 @@ function <%= themeSlugName %>_preprocess_html(&$variables) {
   );
   drupal_add_html_head($meta_cleartype, 'meta_cleartype');
 
+<% if (features.hasHtml5Shiv) { %>
    // Use html5shiv.
-  if (theme_get_setting('html5shim')) {
-    $element = array(
-      'element' => array(
-        '#tag' => 'script',
-        '#value' => '',
-        '#attributes' => array(
-          'type' => 'text/javascript',
-          'src' => file_create_url(drupal_get_path('theme', 'sonambulo') . '/js/html5shiv-printshiv.js'),
-        ),
-      ),
-    );
-    $html5shim = array(
-      '#type' => 'markup',
-      '#markup' => "<!--[if lt IE 9]>\n" . theme('html_tag', $element) . "<![endif]-->\n",
-    );
-    drupal_add_html_head($html5shim, 'sonambulo_html5shim');
-  }
+  $element = array(
+   'element' => array(
+     '#tag' => 'script',
+     '#value' => '',
+     '#attributes' => array(
+       'type' => 'text/javascript',
+       'src' => 'https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js',
+     ),
+   ),
+  );
+  $html5shiv = array(
+   '#type' => 'markup',
+   '#markup' => "<!--[if lt IE 9]>\n" . theme('html_tag', $element) . "<![endif]-->\n",
+  );
+  drupal_add_html_head($html5shiv, 'manati_theme_html5shiv');
 
+<% } %>
+<% if (features.hasRespondJs) { %>
   // Use Respond.js.
-  if (theme_get_setting('respond_js')) {
-    drupal_add_js(drupal_get_path('theme', 'sonambulo') . '/js/respond.min.js', array('group' => JS_LIBRARY, 'weight' => -100));
-  }
+  $element = array(
+   'element' => array(
+     '#tag' => 'script',
+     '#value' => '',
+     '#attributes' => array(
+       'type' => 'text/javascript',
+       'src' => 'https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js',
+     ),
+   ),
+  );
+  $respondjs = array(
+   '#type' => 'markup',
+   '#markup' => "<!--[if lt IE 9]>\n" . theme('html_tag', $element) . "<![endif]-->\n",
+  );
+  drupal_add_html_head($respondjs, 'manati_theme_respondjs');
 
+<% } %>
+<% if (features.hasNormalize) { %>
   // Use normalize.css
-  if (theme_get_setting('normalize_css')) {
-    drupal_add_css(drupal_get_path('theme', 'sonambulo') . '/css/normalize.css', array('group' => CSS_SYSTEM, 'weight' => -100));
-  }
+  drupal_add_css('https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css', array('type' => 'external', 'group' => CSS_SYSTEM, 'weight' => -1000));
+<% } %>
 }
 
 /**

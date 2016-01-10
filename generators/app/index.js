@@ -24,10 +24,28 @@ module.exports = yeoman.generators.Base.extend({
         return props.themeName+' is the best!';
       }
     },{
-      type: 'confirm',
-      name: 'hasLiveReload',
-      message: 'Do you want livereload to be setup for you?',
-      default: true
+        type: 'checkbox',
+        message: 'What features do you want us to set up for you?',
+        name: 'featureList',
+        choices: [
+            {
+                value: 'hasNormalize',
+                name: 'Normalize.css to render elements more consistently',
+                checked: true
+            },
+            {
+                value: 'hasLiveReload',
+                name: 'Livereload to help you create'
+            },
+            {
+                value: 'hasHtml5Shiv',
+                name: 'html5shiv for IE 6-9',
+            },
+            {
+                value: 'hasRespondJs',
+                name: 'Respond JS for IE 6-8'
+            }
+        ]
     }];
 
     this.prompt(prompts, function (props) {
@@ -42,6 +60,13 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       this.destinationRoot(this.destinationPath()+'/'+this.props.themeSlugName);
+
+      props.features = {};
+      if (props.featureList.length) {
+          props.featureList.forEach(function(feature) {
+              props.features[feature] = true;
+          });
+      }
 
       // To access props later use this.props.someOption;
 
@@ -64,11 +89,6 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_template.php'),
         this.destinationPath('template.php'),
-        this.props
-      );
-      this.fs.copyTpl(
-        this.templatePath('_theme-settings.php'),
-        this.destinationPath('theme-settings.php'),
         this.props
       );
       this.fs.copy(
